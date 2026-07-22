@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}New Complaint{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <h2>Raise a Complaint</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <label>Category</label>
+    <select name="category" required>
+      <option value="Food Quality">Food Quality</option>
+      <option value="Quantity">Quantity</option>
+      <option value="Hygiene">Hygiene</option>
+      <option value="Timing">Timing</option>
+      <option value="Other">Other</option>
+    </select>
+    <label>Description</label>
+    <textarea name="description" rows="4" required></textarea>
+    <label>Photo (optional)</label>
+    <input type="file" name="photo" accept="image/*">
+    <button type="submit" class="btn">Submit Complaint</button>
+  </form>
+</div>
+{% endblock %}

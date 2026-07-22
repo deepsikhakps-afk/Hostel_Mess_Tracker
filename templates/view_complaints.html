@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Complaints{% endblock %}
+{% block content %}
+<h2>Complaints</h2>
+
+<div class="filter-row">
+  <a href="{{ url_for('view_complaints') }}" class="btn btn-sm {% if not status_filter %}active{% endif %}">All</a>
+  <a href="{{ url_for('view_complaints', status='Pending') }}" class="btn btn-sm {% if status_filter=='Pending' %}active{% endif %}">Pending</a>
+  <a href="{{ url_for('view_complaints', status='In Progress') }}" class="btn btn-sm {% if status_filter=='In Progress' %}active{% endif %}">In Progress</a>
+  <a href="{{ url_for('view_complaints', status='Resolved') }}" class="btn btn-sm {% if status_filter=='Resolved' %}active{% endif %}">Resolved</a>
+</div>
+
+<div class="card">
+  {% if complaints %}
+    <table class="table">
+      <tr><th>Student</th><th>Room</th><th>Category</th><th>Description</th><th>Photo</th><th>Status</th><th>Update</th></tr>
+      {% for c in complaints %}
+      <tr>
+        <td>{{ c.student.name }}</td>
+        <td>{{ c.student.hostel_room or '-' }}</td>
+        <td>{{ c.category }}</td>
+        <td>{{ c.description }}</td>
+        <td>
+          {% if c.photo_filename %}
+            <a href="{{ url_for('static', filename='uploads/' + c.photo_filename) }}" target="_blank">View</a>
+          {% else %}-{% endif %}
+        </td>
+        <td><span class="badge badge-{{ c.status|lower|replace(' ', '-') }}">{{ c.status }}</span></td>
+        <td>
+          <form method="POST" action="{{ url_for('update_complaint_status', complaint_id=c.id) }}" class="inline-form">
+            <select name="status">
+              <option value="Pending" {% if c.status=='Pending' %}selected{% endif %}>Pending</option>
+              <option value="In Progress" {% if c.status=='In Progress' %}selected{% endif %}>In Progress</option>
+              <option value="Resolved" {% if c.status=='Resolved' %}selected{% endif %}>Resolved</option>
+            </select>
+            <button type="submit" class="btn btn-sm">Update</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="empty">No complaints found.</p>
+  {% endif %}
+</div>
+{% endblock %}

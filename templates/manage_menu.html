@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Manage Menu{% endblock %}
+{% block content %}
+<h2>Weekly Menu Management</h2>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Add Menu Item</h3>
+    <form method="POST">
+      <label>Day of Week</label>
+      <select name="day_of_week" required>
+        {% for d in ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %}
+        <option value="{{ d }}">{{ d }}</option>
+        {% endfor %}
+      </select>
+      <label>Meal Type</label>
+      <select name="meal_type" required>
+        <option value="Breakfast">Breakfast</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Snacks">Snacks</option>
+        <option value="Dinner">Dinner</option>
+      </select>
+      <label>Dish Name</label>
+      <input type="text" name="dish_name" required>
+      <button type="submit" class="btn">Add to Menu</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h3>Current Menu</h3>
+    {% if menu %}
+      <table class="table">
+        <tr><th>Day</th><th>Meal</th><th>Dish</th></tr>
+        {% for m in menu %}
+        <tr><td>{{ m.day_of_week }}</td><td>{{ m.meal_type }}</td><td>{{ m.dish_name }}</td></tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty">No menu items yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

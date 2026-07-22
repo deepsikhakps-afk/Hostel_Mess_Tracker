@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <h2>Register</h2>
+  <form method="POST">
+    <label>Full Name</label>
+    <input type="text" name="name" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <label>Role</label>
+    <select name="role">
+      <option value="student">Student</option>
+      <option value="admin">Mess Admin</option>
+      <option value="warden">Warden</option>
+    </select>
+    <label>Hostel Room (students only)</label>
+    <input type="text" name="hostel_room" placeholder="e.g. B-204">
+    <button type="submit" class="btn">Register</button>
+  </form>
+  <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
+{% endblock %}

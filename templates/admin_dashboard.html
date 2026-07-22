@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-number">{{ total_complaints }}</div>
+    <div class="stat-label">Total Complaints</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">{{ pending_complaints }}</div>
+    <div class="stat-label">Pending Complaints</div>
+  </div>
+  <div class="stat-card alert-card">
+    <div class="stat-number">{{ alerts|length }}</div>
+    <div class="stat-label">Restock Alerts</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>⚠️ Predicted Restock Alerts</h3>
+  {% if alerts %}
+    <table class="table">
+      <tr><th>Item</th><th>Current Qty</th><th>Predicted Daily Usage</th><th>Days Until Empty</th></tr>
+      {% for f in alerts %}
+      <tr class="row-alert">
+        <td>{{ f.item.name }}</td>
+        <td>{{ f.item.current_qty }} {{ f.item.unit }}</td>
+        <td>{{ f.predicted_daily_usage }} {{ f.item.unit }}/day</td>
+        <td>{{ f.days_until_empty if f.days_until_empty is not none else 'N/A' }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p class="empty">No restock alerts right now — inventory levels look healthy.</p>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3>All Item Forecasts</h3>
+  <table class="table">
+    <tr><th>Item</th><th>Current Qty</th><th>Moving Avg</th><th>Regression Forecast</th><th>Days Until Empty</th><th>Status</th></tr>
+    {% for f in forecasts %}
+    <tr>
+      <td>{{ f.item.name }}</td>
+      <td>{{ f.item.current_qty }} {{ f.item.unit }}</td>
+      <td>{{ f.moving_average }}</td>
+      <td>{{ f.regression_forecast }}</td>
+      <td>{{ f.days_until_empty if f.days_until_empty is not none else 'N/A' }}</td>
+      <td>
+        {% if f.needs_restock %}
+          <span class="badge badge-pending">Restock Soon</span>
+        {% else %}
+          <span class="badge badge-resolved">OK</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

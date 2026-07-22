@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Meal Feedback{% endblock %}
+{% block content %}
+<div class="auth-card">
+  <h2>Rate a Meal</h2>
+  <form method="POST">
+    <label>Meal Type</label>
+    <select name="meal_type" required>
+      <option value="Breakfast">Breakfast</option>
+      <option value="Lunch">Lunch</option>
+      <option value="Snacks">Snacks</option>
+      <option value="Dinner">Dinner</option>
+    </select>
+    <label>Dish Name</label>
+    <input type="text" name="dish_name" placeholder="e.g. Rajma Chawal">
+    <label>Rating (1-5)</label>
+    <input type="number" name="rating" min="1" max="5" required>
+    <label>Comment (optional)</label>
+    <textarea name="comment" rows="3"></textarea>
+    <button type="submit" class="btn">Submit Feedback</button>
+  </form>
+</div>
+{% endblock %}

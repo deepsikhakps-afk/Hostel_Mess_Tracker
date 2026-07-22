@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<h2>Welcome, {{ current_user.name }}</h2>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">
+      <h3>My Complaints</h3>
+      <a href="{{ url_for('new_complaint') }}" class="btn btn-sm">+ New Complaint</a>
+    </div>
+    {% if complaints %}
+      <table class="table">
+        <tr><th>Category</th><th>Description</th><th>Status</th><th>Date</th></tr>
+        {% for c in complaints %}
+        <tr>
+          <td>{{ c.category }}</td>
+          <td>{{ c.description[:50] }}{% if c.description|length > 50 %}...{% endif %}</td>
+          <td><span class="badge badge-{{ c.status|lower|replace(' ', '-') }}">{{ c.status }}</span></td>
+          <td>{{ c.created_at.strftime('%d %b %Y') }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty">No complaints raised yet.</p>
+    {% endif %}
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Weekly Mess Menu</h3>
+      <a href="{{ url_for('new_feedback') }}" class="btn btn-sm">Rate a Meal</a>
+    </div>
+    {% if menu %}
+      <table class="table">
+        <tr><th>Day</th><th>Meal</th><th>Dish</th></tr>
+        {% for m in menu %}
+        <tr><td>{{ m.day_of_week }}</td><td>{{ m.meal_type }}</td><td>{{ m.dish_name }}</td></tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p class="empty">Menu not published yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

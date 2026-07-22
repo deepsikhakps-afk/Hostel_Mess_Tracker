@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}Analytics{% endblock %}
+{% block content %}
+<h2>Analytics Dashboard</h2>
+
+<div class="grid-2">
+  <div class="card">
+    <h3>Complaints by Category</h3>
+    <canvas id="complaintChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Average Dish Ratings</h3>
+    {% if dish_names %}
+      <canvas id="ratingChart"></canvas>
+    {% else %}
+      <p class="empty">No feedback submitted yet.</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="card">
+  <h3>Consumption Forecast vs Current Stock</h3>
+  <canvas id="stockChart"></canvas>
+</div>
+
+<script>
+const complaintCtx = document.getElementById('complaintChart');
+new Chart(complaintCtx, {
+  type: 'bar',
+  data: {
+    labels: {{ categories|tojson }},
+    datasets: [{
+      label: 'Complaints',
+      data: {{ complaint_counts|tojson }},
+      backgroundColor: '#e76f51'
+    }]
+  },
+  options: { responsive: true, plugins: { legend: { display: false } } }
+});
+
+{% if dish_names %}
+const ratingCtx = document.getElementById('ratingChart');
+new Chart(ratingCtx, {
+  type: 'bar',
+  data: {
+    labels: {{ dish_names|tojson }},
+    datasets: [{
+      label: 'Avg Rating',
+      data: {{ dish_avg_ratings|tojson }},
+      backgroundColor: '#2a9d8f'
+    }]
+  },
+  options: { responsive: true, scales: { y: { min: 0, max: 5 } }, plugins: { legend: { display: false } } }
+});
+{% endif %}
+
+const stockCtx = document.getElementById('stockChart');
+new Chart(stockCtx, {
+  type: 'bar',
+  data: {
+    labels: [{% for f in forecasts %}"{{ f.item.name }}",{% endfor %}],
+    datasets: [
+      {
+        label: 'Current Qty',
+        data: [{% for f in forecasts %}{{ f.item.current_qty }},{% endfor %}],
+        backgroundColor: '#264653'
+      },
+      {
+        label: 'Predicted Daily Usage',
+        data: [{% for f in forecasts %}{{ f.predicted_daily_usage }},{% endfor %}],
+        backgroundColor: '#e9c46a'
+      }
+    ]
+  },
+  options: { responsive: true }
+});
+</script>
+{% endblock %}
