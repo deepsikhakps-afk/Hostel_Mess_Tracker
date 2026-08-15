@@ -104,6 +104,8 @@ just a CRUD form).
 8. Future Scope (SMS/email alerts, occupancy-adjusted forecasting, mobile app)
 
 # Screenshots
+![alt text](image.png)
+
 ## Extending It Further
 
 - Add occupancy count as a variable so predicted usage scales with hostel headcount
