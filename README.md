@@ -60,7 +60,7 @@ hostel-mess-tracker/
     └── uploads/              # complaint photos land here
 ```
 
-## How the Predictive Restocking Algorithm Work
+## How the Predictive Restocking Algorithm Works
 
 For each inventory item, the system looks at the last 14 days of logged usage
 and computes two forecasts:
