@@ -100,7 +100,7 @@ just a CRUD form).
 4. Algorithm (moving average + linear regression — explain the math, show a sample table)
 5. Implementation (Flask/SQLAlchemy backend, Jinja2 + Chart.js frontend)
 6. Testing (unit test the forecast function with sample usage data — see below)
-7. Results & Screenshots
+7. Results & Screenshot
 8. Future Scope (SMS/email alerts, occupancy-adjusted forecasting, mobile app)
 
 # Screenshots
