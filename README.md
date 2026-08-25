@@ -8,7 +8,7 @@ An MCA-level full-stack project (Flask + SQLAlchemy + Chart.js) that combines:
 - **Menu & feedback system** with dish ratings
 - **Analytics dashboard** with Chart.js visualizations
 
-## Quick 
+## Quick Start
 
 ```bash
 cd hostel-mess-tracker
