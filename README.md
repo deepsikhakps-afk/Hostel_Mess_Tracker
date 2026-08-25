@@ -101,7 +101,7 @@ just a CRUD form).
 5. Implementation (Flask/SQLAlchemy backend, Jinja2 + Chart.js frontend)
 6. Testing (unit test the forecast function with sample usage data — see below)
 7. Results & Screenshots
-8. Future Scope (SMS/email alerts, occupancy-adjusted forecasting, mobile app
+8. Future Scope (SMS/email alerts, occupancy-adjusted forecasting, mobile app)
 
 # Screenshots
 ![alt text](image.png)
