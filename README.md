@@ -104,7 +104,7 @@ just a CRUD form).
 8. Future Scope (SMS/email alerts, occupancy-adjusted forecasting, mobile app)
 
 # Screenshots
-![alt text](image.png)
+![alt text](image.png
 
 ## Extending It Further
 
