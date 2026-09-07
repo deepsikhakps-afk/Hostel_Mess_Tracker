@@ -4,7 +4,7 @@ An MCA-level full-stack project (Flask + SQLAlchemy + Chart.js) that combines:
 - **Complaint management** for hostel mess issues (food quality, hygiene, timing, etc.)
 - **Inventory tracking** with daily usage logs
 - **Predictive restocking** using a moving-average + linear-regression forecasting
-  algorithm — the "unique" DAA-relevant core of the project
+  algorithm — the "unique" DAA-relevant core of the 
 - **Menu & feedback system** with dish ratings
 - **Analytics dashboard** with Chart.js visualizations
 
