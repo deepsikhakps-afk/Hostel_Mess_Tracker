@@ -6,7 +6,7 @@ An MCA-level full-stack project (Flask + SQLAlchemy + Chart.js) that combines:
 - **Predictive restocking** using a moving-average + linear-regression forecasting
   algorithm — the "unique" DAA-relevant core of the project
 - **Menu & feedback system** with dish ratings
-- **Analytics dashboard** 
+- **Analytics dashboard** with Chart.js visualizations
 
 ## Quick Start
 
