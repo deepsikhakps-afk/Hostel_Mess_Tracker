@@ -11,6 +11,8 @@ An MCA-level full-stack project (Flask + SQLAlchemy + Chart.js) that combines:
 ## Quick Start
 
 ```bash
+cd hostel-mess-tracker
+pip install -r requirements.txt
 
 # Option A: just run it (auto-creates DB + admin account)
 python app.py
