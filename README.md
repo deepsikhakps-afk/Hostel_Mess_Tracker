@@ -36,7 +36,7 @@ as originally planned in the project report:
    ```python
    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:yourpassword@localhost/hostel_mess_db'
    ```
-3. Create the database first: `CREATE DATABASE hostel_mess_db;`
+3. Create the database first: `CREATE DATABASE hostel_;`
 4. Run `flask --app app init-db`
 
 ## Project Structure
